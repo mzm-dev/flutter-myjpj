@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //https://apps.mampu.gov.my/myjpj/swagger/
 class LoginService {
+  // URL API
   final String url = 'https://apps.mampu.gov.my/myjpj/api';
 
   final dio = Dio();
@@ -13,11 +14,13 @@ class LoginService {
 
   Future<String> login(BuildContext context, username, String password) async {
     try {
+      // Set Header Token
       response = await dio.post(
         '$url/login',
         data: {'username': username, 'password': password},
       );
 
+      // Return Data Json
       return response.data['JWT'];
     } on DioException {
       if (context.mounted) {
@@ -29,6 +32,7 @@ class LoginService {
           ),
         );
       }
+      // Return Error
       return 'error';
     }
   }

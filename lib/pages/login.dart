@@ -113,7 +113,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   goToHomePage(BuildContext context) async {
+    // Form Validation
     if (_formKey.currentState!.validate()) {
+      // Login Service
       LoginService loginService = LoginService();
 
       String response = await loginService.login(

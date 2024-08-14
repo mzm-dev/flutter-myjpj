@@ -19,8 +19,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    super.initState();
+    // Get User Profile
     getUserProfile();
+    super.initState();
   }
 
   @override
@@ -65,9 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // Get User Profile
   getUserProfile() async {
+    // Profile Service
     ProfileService profileService = ProfileService();
 
+    // Get User Profile
     List<dynamic> response = await profileService.users(context, widget.token);
 
     var user = response[0];
@@ -76,6 +80,5 @@ class _MyHomePageState extends State<MyHomePage> {
       namaPengguna = user['nama_pengguna'];
       emel = user['emel'];
     });
-    // return response;
   }
 }

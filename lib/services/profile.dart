@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //https://apps.mampu.gov.my/myjpj/swagger/
 class ProfileService {
+  // URL API
   final String url = 'https://apps.mampu.gov.my/myjpj/api';
 
   final dio = Dio();
@@ -13,12 +14,16 @@ class ProfileService {
 
   Future<List<dynamic>> users(BuildContext context, String token) async {
     try {
+      // Set Header Token
       dio.options.headers["X-Authorization"] = token;
 
+      // End Point : $url/list/users
       response = await dio.get('$url/list/users');
 
+      // Return Data Json List
       List<dynamic> jsonData = response.data['users'];
-      return jsonData; // Return the parsed JSON data
+
+      return jsonData;
     } on DioException {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -30,6 +35,7 @@ class ProfileService {
         );
       }
 
+      // Return Empty List
       return [];
     }
   }
