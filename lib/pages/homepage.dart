@@ -75,6 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
     List<dynamic> response = await profileService.users(context, widget.token);
 
     var user = response[0];
+
+    // Set User Profile
     setState(() {
       uuid = user['uuid'];
       namaPengguna = user['nama_pengguna'];
